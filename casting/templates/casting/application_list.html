@@ -1,0 +1,5 @@
+{% extends 'casting/base.html' %}
+{% block content %}
+<div class="actions"><h1>Заявки</h1><a class="btn" href="{% url 'application_create' %}">Новая заявка</a></div>
+<table><tr><th>Талант</th><th>Кастинг</th><th>Роль</th><th>Статус</th><th>Оценка</th><th>Действия</th></tr>{% for a in applications %}<tr><td>{{ a.talent.full_name }}</td><td>{{ a.project.title }}</td><td>{{ a.role.role_name|default:'—' }}</td><td>{{ a.get_status_display }}</td><td>{{ a.score }}</td><td><a href="{% url 'application_update_status' a.id 'invited' %}">пригласить</a> · <a href="{% url 'application_update_status' a.id 'approved' %}">утвердить</a> · <a href="{% url 'application_update_status' a.id 'rejected' %}">отклонить</a></td></tr>{% endfor %}</table>
+{% endblock %}

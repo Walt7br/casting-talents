@@ -1,0 +1,14 @@
+{% extends 'casting/base.html' %}
+{% block content %}
+<section class="hero">
+    <h1>Информационная система «Кастинг талантов»</h1>
+    <p>Платформа для ведения базы талантов, регистрации заявок, отбора кандидатов, расписания проб и контроля статусов кастингов.</p>
+    {% if user.is_authenticated %}<a class="btn" href="{% url 'dashboard' %}">Перейти в систему</a>{% else %}<a class="btn" href="{% url 'login' %}">Войти</a>{% endif %}
+</section>
+<h2>Открытые кастинги</h2>
+<div class="grid">
+{% for project in latest_projects %}
+    <article class="card"><h3>{{ project.title }}</h3><p>{{ project.client }} · {{ project.location }}</p><p>{{ project.description|truncatewords:22 }}</p></article>
+{% empty %}<p>Открытых кастингов пока нет.</p>{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,5 @@
+{% extends 'casting/base.html' %}
+{% block content %}
+<div class="actions"><h1>Расписание проб</h1><a class="btn" href="{% url 'schedule_create' %}">Назначить пробу</a></div>
+<table><tr><th>Дата и время</th><th>Талант</th><th>Кастинг</th><th>Кабинет</th><th>Результат</th></tr>{% for s in schedule %}<tr><td>{{ s.audition_time }}</td><td>{{ s.application.talent.full_name }}</td><td>{{ s.application.project.title }}</td><td>{{ s.room }}</td><td>{{ s.result_note|default:'—' }}</td></tr>{% endfor %}</table>
+{% endblock %}

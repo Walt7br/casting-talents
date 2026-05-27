@@ -1,0 +1,8 @@
+{% extends 'casting/base.html' %}
+{% block content %}
+<div class="form-card">
+<h1>Вход в систему</h1>
+<form method="post">{% csrf_token %}{{ form.as_p }}<button class="btn" type="submit">Войти</button></form>
+<p class="hint">Для проверки создайте администратора командой: python manage.py createsuperuser</p>
+</div>
+{% endblock %}

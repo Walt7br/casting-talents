@@ -1,0 +1,6 @@
+{% extends 'casting/base.html' %}
+{% block content %}
+<div class="actions"><h1>База талантов</h1><a class="btn" href="{% url 'talent_create' %}">Добавить</a></div>
+<form class="search"><input name="q" value="{{ q }}" placeholder="Поиск по ФИО, городу или навыкам"><button>Найти</button></form>
+<table><tr><th>ФИО</th><th>Город</th><th>Контакты</th><th>Рост</th><th>Навыки</th></tr>{% for t in talents %}<tr><td>{{ t.full_name }}</td><td>{{ t.city }}</td><td>{{ t.phone }}<br>{{ t.email }}</td><td>{{ t.height_cm|default:'—' }}</td><td>{{ t.skills|truncatewords:12 }}</td></tr>{% endfor %}</table>
+{% endblock %}

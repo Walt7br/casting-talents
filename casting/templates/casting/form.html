@@ -1,0 +1,4 @@
+{% extends 'casting/base.html' %}
+{% block content %}
+<div class="form-card"><h1>{{ title }}</h1><form method="post">{% csrf_token %}{{ form.as_p }}<button class="btn" type="submit">Сохранить</button></form></div>
+{% endblock %}

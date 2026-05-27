@@ -1,0 +1,11 @@
+{% extends 'casting/base.html' %}
+{% block content %}
+<h1>Панель управления</h1>
+<div class="stats">
+ <div><b>{{ stats.talents }}</b><span>талантов</span></div><div><b>{{ stats.projects }}</b><span>кастингов</span></div><div><b>{{ stats.applications }}</b><span>заявок</span></div><div><b>{{ stats.avg_score }}</b><span>средняя оценка</span></div>
+</div>
+<h2>Кастинги и количество заявок</h2>
+<table><tr><th>Кастинг</th><th>Статус</th><th>Заявки</th><th>Локация</th></tr>{% for p in active_projects %}<tr><td><a href="{% url 'project_detail' p.id %}">{{ p.title }}</a></td><td>{{ p.get_status_display }}</td><td>{{ p.total_applications }}</td><td>{{ p.location }}</td></tr>{% endfor %}</table>
+<h2>Заявки по статусам</h2>
+<table><tr><th>Статус</th><th>Количество</th></tr>{% for row in by_status %}<tr><td>{{ row.status }}</td><td>{{ row.total }}</td></tr>{% endfor %}</table>
+{% endblock %}

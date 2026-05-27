@@ -1,0 +1,1 @@
+web: gunicorn casting_talents.wsgi

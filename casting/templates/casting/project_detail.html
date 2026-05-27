@@ -1,0 +1,10 @@
+{% extends 'casting/base.html' %}
+{% block content %}
+<h1>{{ project.title }}</h1>
+<p><b>Заказчик:</b> {{ project.client }} · <b>Локация:</b> {{ project.location }} · <b>Статус:</b> {{ project.get_status_display }}</p>
+<p>{{ project.description }}</p>
+<div class="actions"><h2>Роли</h2><a class="btn" href="{% url 'role_create' project.id %}">Добавить роль</a></div>
+<table><tr><th>Роль</th><th>Возраст</th><th>Навыки</th><th>Гонорар</th></tr>{% for r in project.roles.all %}<tr><td>{{ r.role_name }}</td><td>{{ r.min_age }}–{{ r.max_age }}</td><td>{{ r.required_skills }}</td><td>{{ r.payment }}</td></tr>{% endfor %}</table>
+<h2>Заявки</h2>
+<table><tr><th>Талант</th><th>Роль</th><th>Статус</th><th>Оценка</th></tr>{% for a in project.applications.all %}<tr><td>{{ a.talent.full_name }}</td><td>{{ a.role.role_name|default:'—' }}</td><td>{{ a.get_status_display }}</td><td>{{ a.score }}</td></tr>{% endfor %}</table>
+{% endblock %}
