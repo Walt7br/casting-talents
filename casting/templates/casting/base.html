@@ -17,7 +17,10 @@
             <a href="{% url 'talent_list' %}">Таланты</a>
             <a href="{% url 'application_list' %}">Заявки</a>
             <a href="{% url 'schedule_list' %}">Пробы</a>
-            <a href="{% url 'logout' %}">Выход</a>
+            <form method="post" action="{% url 'logout' %}" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" style="background:none;border:none;cursor:pointer;color:inherit;font:inherit;padding:0;">Выход</button>
+</form>
         {% else %}
             <a href="{% url 'login' %}">Вход</a>
         {% endif %}
